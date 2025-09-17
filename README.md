@@ -21,3 +21,35 @@ d.	Merupakan proses sinkronisasi antara model Python yang kita definisikan di mo
 e.	Django dipilih sebagai framework pertama untuk dipelajari karena memiliki konsep yang lengkap namun tetap mudah dipahami untuk pemula. Django menggunakan arsitektur Model-Template-View (MTV) yang jelas membagi logika aplikasi, data, dan tampilan. Selain itu, Django menyediakan banyak fitur bawaan seperti ORM, sistem autentikasi, admin panel, hingga keamanan web, sehingga mahasiswa dapat langsung fokus pada logika bisnis tanpa harus membangun semuanya dari nol. Django juga berbasis Python, bahasa pemrograman yang relatif mudah dipelajari. Oleh karena itu, Django sangat cocok untuk menjadi framework awal untuk dikenalkan kepada kita (mahasiswa).
 
 Berikut adalah link aplikasi PWS: https://haikal-muzaki-sportsgear.pbp.cs.ui.ac.id/
+
+
+
+# Tugas 3
+
+1. Jelaskan mengapa kita memerlukan data delivery dalam pengimplementasian sebuah platform?
+Kita memerlukan data delivery karena sebuah platform harus bisa bertukar informasi antara frontend dan backend, antar server, maupun dengan aplikasi lain. Data delivery memastikan informasi bisa dikirim dengan format yang konsisten sehingga sistem yang berbeda tetap bisa saling berkomunikasi. Selain itu, data delivery juga membuat data yang diterima dapat disimpan dengan baik dalam database sesuai struktur yang sudah ditentukan. Dengan begitu, platform bisa berjalan lancar dan setiap bagian tetap terhubung.
+
+2. Menurutmu, mana yang lebih baik antara XML dan JSON? Mengapa JSON lebih populer dibandingkan XML?
+XML dan JSON sama-sama bisa digunakan untuk mengirim data, tetapi JSON lebih baik untuk konteks web modern karena syntax-nya lebih sederhana, lebih ringkas, dan mudah dibaca. Struktur JSON mirip dengan unordered map atau objek di banyak bahasa pemrograman, sehingga developer sudah terbiasa menggunakannya. Selain itu, JSON langsung cocok dengan JavaScript, sehingga lebih cepat diproses di browser. Hal-hal inilah yang membuat JSON lebih populer dibandingkan XML.
+
+3. Jelaskan fungsi dari method is_valid() pada form Django dan mengapa kita membutuhkan method tersebut?
+Method is_valid() pada form Django berfungsi untuk mengecek apakah data yang dimasukkan user sudah sesuai aturan yang ditentukan. Method ini penting karena mencegah data yang tidak valid masuk ke database. Jadi, is_valid() berperan sebagai filter atau penjaga agar hanya data yang benar saja yang diproses oleh sistem.
+
+4. Mengapa kita membutuhkan csrf_token saat membuat form di Django? Apa yang dapat terjadi jika kita tidak menambahkan csrf_token pada form Django? Bagaimana hal tersebut dapat dimanfaatkan oleh penyerang?
+Kita membutuhkan csrf_token karena ini adalah cara Django melindungi aplikasi dari serangan CSRF (Cross-Site Request Forgery). Token ini memastikan bahwa setiap permintaan form benar-benar berasal dari halaman aplikasi kita, bukan dari situs lain. Jika csrf_token tidak digunakan, penyerang bisa memanfaatkan celah ini untuk mengirim permintaan palsu atas nama user yang sedang login, misalnya melakukan transfer uang atau mengubah data penting tanpa sepengetahuan user.
+
+5. step-by-step actions:
+1) sesuai dengan checklist pertama, kita membuat 4 fungsi baru yaitu show_json, show_xml, show_xml_by_id, dan show_json_by_id di views.py.
+2) setelah membuat fungsi-fungsi tersebut, kita tidak lupa utnuk meng-import fungsi-fungsi tersebut di urls.py dan menambahkan path url ke dalam urlpatterns.
+3) untuk checklist selanjutnya file yang harus diubah adalah main.html. Di tugas ini kita harus merubah main.html sehingga juga menampilkan tombol "add" dan "detail"
+4) membuat forms.py yang sesuai dengan proyek kita. Nah di sini, saya juga sekalian melengkapi perubahan kode-kode yang diperlukan yang tadi belum disebut. Perubahan tersebut termasuk membuat base.html, menambahkan sesuatu di list templates dan CRF_TRUSTED_ORIGINS di settings.py, menambahkan beberapa import di views.py, meng-import fungsi-fungsi ke urls.py yang ada pada direktori main dan menambahkan path url ke dalam urlpatterns.
+5) membuat show_product.html untuk menampilkan detail dari produk.
+6) melengkapi kode dengan membuat create_product.html untuk menambahkan suatu produk.
+7) Seharusnya proyek sudah sesuai dan dapat diluncurkan. Namun, dalam kasus saya, terdapat beberapa error yang terjadi karena terdapat nama fungsi/variabel/class yang tidak sesuai. Misalnya, saya memanggil product_detail padahal seharusnya saya memanggil show_product. Setelah masalah tersebut ditangani, saya akhirnya dapat menjalankan proyek saya.
+
+6. Menurut saya tutorial yang diberikan sudah sangat lengkap dan dengan tutorial tersebut, mahasiswa dapat mempelajari dan mengerti materi yang ingin disampaikan. 
+
+![foto show xml](./gambar_tugas3/Screenshot%20(119).png)
+![foto show json](./gambar_tugas3/Screenshot%20(120).png)
+![foto show json by id](./gambar_tugas3/Screenshot%20(121).png)
+![foto show xml by id](./gambar_tugas3/Screenshot%20(122).png)
