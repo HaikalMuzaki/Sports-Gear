@@ -70,27 +70,6 @@
         </button>
       </form>
 
-      <!-- Messages Display -->
-      {% if messages %}
-        <div class="mt-6">
-          {% for message in messages %}
-            <div 
-              class="
-                px-4 py-3 rounded-md text-sm border
-                {% if message.tags == 'success' %}
-                  bg-green-50 border-green-200 text-green-700
-                {% elif message.tags == 'error' %}
-                  bg-red-50 border-red-200 text-red-700
-                {% else %}
-                  bg-gray-50 border-gray-200 text-gray-700
-                {% endif %}
-              ">
-              {{ message }}
-            </div>
-          {% endfor %}
-        </div>
-      {% endif %}
-
       <div class="mt-6 text-center pt-6 border-t border-gray-200">
         <p class="text-gray-500 text-sm">
           Don't have an account? 
@@ -99,6 +78,43 @@
           </a>
         </p>
       </div>
+<script>
+function getCSRFToken() {
+  const cookie = document.cookie.split('; ').find(r => r.startsWith('csrftoken='));
+  return cookie ? cookie.split('=')[1] : '';
+}
+
+const loginForm = document.querySelector('form[method="POST"]');
+if (loginForm) {
+  loginForm.addEventListener('submit', async (e) => {
+    e.preventDefault(); // biar ga reload halaman
+
+    const formData = new FormData(loginForm);
+    const res = await fetch("{% url 'main:login_ajax' %}", {
+      method: "POST",
+      headers: { 'X-CSRFToken': getCSRFToken() },
+      body: formData,
+    });
+
+    if (res.ok) {
+      const data = await res.json();
+      showToast(
+        'Welcome, ' + (data.username || 'user') + '!',
+        'Login successful. Redirecting...',
+        'success',
+        2500
+      );
+      setTimeout(() => {
+        window.location.href = "{% url 'main:show_main' %}";
+      }, 1500);
+    } else {
+      showToast('Login failed', 'Invalid username or password', 'error', 3000);
+    }
+  });
+}
+</script>
+
+
     </div>
   </div>
 </div>

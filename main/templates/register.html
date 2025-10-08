@@ -82,27 +82,6 @@
         </button>
       </form>
 
-      <!-- Messages Display -->
-      {% if messages %}
-        <div class="mt-6">
-          {% for message in messages %}
-            <div 
-              class="
-                px-4 py-3 rounded text-sm border
-                {% if message.tags == 'success' %}
-                  bg-green-50 border-green-200 text-green-700
-                {% elif message.tags == 'error' %}
-                  bg-red-50 border-red-200 text-red-700
-                {% else %}
-                  bg-gray-50 border-gray-200 text-gray-700
-                {% endif %}
-              ">
-              {{ message }}
-            </div>
-          {% endfor %}
-        </div>
-      {% endif %}
-
       <div class="mt-6 text-center">
         <p class="text-gray-500 text-sm">
           Already have an account? 
@@ -112,6 +91,37 @@
         </p>
       </div> 
       </div>
+  <script>
+  function getCSRFToken() {
+    const cookie = document.cookie.split('; ').find(r => r.startsWith('csrftoken='));
+    return cookie ? cookie.split('=')[1] : '';
+  }
+
+  const regForm = document.querySelector('form[method="POST"]');
+  if (regForm) {
+    regForm.addEventListener('submit', async (e) => {
+      e.preventDefault();
+
+      const formData = new FormData(regForm);
+      const res = await fetch("{% url 'main:register_ajax' %}", {
+        method: "POST",
+        headers: { 'X-CSRFToken': getCSRFToken() },
+        body: formData,
+      });
+
+      if (res.ok) {
+        showToast('Account created', 'You can now login.', 'success', 2500);
+        setTimeout(() => {
+          window.location.href = "{% url 'main:login' %}";
+        }, 1500);
+      } else {
+        showToast('Register failed', 'Please check your input.', 'error', 3000);
+      }
+    });
+  }
+  </script>
+
+
     </div>
   </div>
 </div>
