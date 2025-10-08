@@ -142,3 +142,23 @@ Selain itu, halaman daftar produk merupakan bagian penting yang harus responsif 
 Card yang diimplementasikan menampilkan thumbnail produk, atau placeholder bila gambar tidak tersedia, kemudian dilengkapi dengan badge kategori serta badge status untuk menandai produk sebagai featured atau premium. Saat kursor diarahkan ke card, muncul overlay berisi harga singkat serta tombol quick view yang memudahkan pengguna melihat detail produk dengan cepat. Bagian metadata menampilkan tanggal pembuatan produk dan harga dalam format yang lebih jelas, sedangkan judul produk ditampilkan sebagai tautan yang dapat diklik menuju halaman detail. Deskripsi produk dipangkas agar ringkas dan tidak merusak tata letak, serta aksi Edit dan Delete ditampilkan secara kondisional hanya bagi pemilik produk yang sedang login. Dengan kombinasi elemen-elemen ini, card tidak hanya berfungsi sebagai wadah informasi produk, tetapi juga mempermudah pengelolaan produk langsung dari daftar.
 
 Terakhir, agar navigasi antarhalaman menjadi lebih mudah, aplikasi memerlukan sebuah navigation bar yang responsif. Dengan Tailwind, navbar dapat dibuat sederhana namun fleksibel, menampilkan daftar menu secara horizontal di perangkat berlayar lebar, dan otomatis bertransformasi menjadi menu tersembunyi dengan tombol hamburger pada perangkat berlayar kecil. Hal ini memastikan bahwa pengguna tetap bisa mengakses fitur-fitur utama seperti daftar produk, tambah produk, login, atau logout dengan nyaman, baik di desktop maupun mobile.
+
+# Tugas 6
+
+1. Perbedaan synchronous dan asynchronous request adalah jika Synchronous, browser menunggu server merespons sebelum melanjutkan yang artinya halaman akan reload penuh. Sedangkan Asynchronous berarti browser tidak menunggu, hanya sebagian halaman yang diperbarui tanpa reload penuh (lebih cepat dan interaktif).
+
+2. JavaScript mengirim request (XHR/Fetch) ke URL Django lalu Django View memproses data dan mengirim response (biasanya JSON). Seetlah itu JavaScript menerima dan menampilkan hasilnya di halaman tanpa refresh.
+
+3. Keuntungan AJAX dibanding render biasa:
+- Tidak perlu reload halaman → lebih cepat.
+- Hemat bandwidth.
+- Interaksi terasa real-time (misal: validasi form langsung).
+- Pengalaman pengguna lebih halus dan dinamis.
+
+4. Keamanan AJAX pada Login/Register:
+- Gunakan CSRF token di setiap request.
+- Validasi input di server-side, bukan hanya di JavaScript.
+- Enkripsi koneksi (HTTPS).
+- Jangan kirim data sensitif lewat GET, gunakan POST.
+
+5. AJAX membuat website terasa lebih responsif, cepat, dan interaktif, karena pengguna nggak harus menunggu halaman dimuat ulang setiap kali berinteraksi.
