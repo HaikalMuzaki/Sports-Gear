@@ -5,7 +5,7 @@ from main.views import (
     register, login_user, logout_user,
     edit_product, delete_product, add_product_entry_ajax,
     update_product_entry_ajax, delete_product_entry_ajax,
-    login_ajax, register_ajax
+    login_ajax, register_ajax, proxy_image, create_product_flutter,
 )
 
 app_name = 'main'
@@ -28,4 +28,6 @@ urlpatterns = [
     path('api/products/<uuid:id>/delete/', delete_product_entry_ajax, name='delete_product_entry_ajax'),
     path('api/auth/login/', login_ajax, name='login_ajax'),
     path('api/auth/register/', register_ajax, name='register_ajax'),
+    path('proxy-image/', proxy_image, name='proxy_image'),
+    path('create-flutter/', create_product_flutter, name='create_product_flutter'),
 ]
